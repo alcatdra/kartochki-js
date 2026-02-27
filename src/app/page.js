@@ -33,7 +33,7 @@ export default function Home() {
 
         <Link className={buttonStyles.button} href="/editWords">
           <Image
-            src="/icons/edit.png"
+            src="./icons/edit.png"
             width={30}
             height={30}
             alt="image error"
