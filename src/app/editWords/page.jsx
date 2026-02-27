@@ -36,7 +36,12 @@ function editWords() {
       </ul>
 
       <Link className={buttonStyles.button} href="/">
-        <Image src="/icons/edit.png" width={30} height={30} alt="image error" />
+        <Image
+          src="./icons/edit.png"
+          width={30}
+          height={30}
+          alt="image error"
+        />
       </Link>
     </div>
   );
