@@ -1,0 +1,17 @@
+﻿@use '../../variables' as v;
+
+.li {
+  display: flex;
+  gap: 10px;
+  max-width: 100%;
+  align-items: center;
+}
+
+.item {
+  background-color: v.$color-secondary;
+  min-height: 60px;
+  border-radius: v.$radius;
+  width: 100%;
+  align-items: center;
+  padding: 10px 20px;
+}

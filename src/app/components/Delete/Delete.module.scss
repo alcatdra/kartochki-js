@@ -1,0 +1,19 @@
+﻿@use '../../variables' as v;
+@use 'sass:color';
+
+.button {
+  display: flex;
+  background-color: v.$color-delete;
+  border-radius: 100%;
+  min-width: 60px;
+  min-height: 60px;
+  max-width: 60px;
+  max-height: 60px;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+
+  &:hover {
+    background-color: color.adjust(v.$color-delete, $lightness: -10%);
+  }
+}
