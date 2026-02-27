@@ -9,7 +9,7 @@ export default function Delete({ onClick, direction = 'left' }) {
       className={direction == 'right' ? styles.right : styles.left}
     >
       {' '}
-      <Image src="/icons/arrow.png" width={30} height={30} alt="image error" />
+      <Image src="./icons/arrow.png" width={30} height={30} alt="image error" />
     </button>
   );
 }
