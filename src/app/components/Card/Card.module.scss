@@ -12,11 +12,17 @@
   aspect-ratio: 5/4;
   perspective: 1000px; /* Remove this if you don't want the 3D effect */
 
-  &:hover .flipCardInner {
-    transform: rotateY(180deg);
+  @media (any-hover: hover) {
+    &:hover {
+      transform: rotate3d(1, -1, 0, 20deg);
+      transition: transform 0.3s;
+    }
   }
 }
 
+.flipped {
+  transform: rotateY(180deg);
+}
 /* This container is needed to position the front and back side */
 .flipCardInner {
   position: relative;
