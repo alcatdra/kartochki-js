@@ -1,7 +1,7 @@
 ﻿'use client';
 import { useEffect, useState } from 'react';
 import styles from '../page.module.scss';
-import Form from '../components/Form/Form';
+import WordsForm from '../components/WordsForm/WordsForm';
 import ListItem from '../components/ListItem/ListItem';
 import buttonStyles from '../components/Button/Button.module.scss';
 import Image from 'next/image';
@@ -60,7 +60,7 @@ function editWords() {
         Editing stack:{' '}
         {selectedStack ? selectedStack.name : 'No stack selected'}
       </h2>
-      <Form onAddItems={handleAddItems} />
+      <WordsForm onAddItems={handleAddItems} />
       <ul className={styles.list}>
         {words.length === 0 ? (
           <></>

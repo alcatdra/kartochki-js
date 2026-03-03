@@ -2,8 +2,8 @@
 import Image from 'next/image';
 import styles from './page.module.scss';
 import buttonStyles from './components/Button/Button.module.scss';
-import Arrow from './components/Arrow/Arrow';
 import Card from './components/Card/Card';
+import Button from './components/Button/Button';
 import { useState } from 'react';
 import Link from 'next/link';
 import { useAppContext } from './context/index';
@@ -35,7 +35,10 @@ export default function Home() {
       </p>
       <Card word={words.length === 0 ? {} : words[currentWord]} />
       <div className={styles.navigation}>
-        <Arrow onClick={() => handleWordNavigation(false)} direction="left" />
+        <Button
+          onClick={() => handleWordNavigation(false)}
+          icon={'./icons/arrow.png'}
+        />
 
         <Link className={buttonStyles.button} href="/stacks">
           <Image
@@ -46,7 +49,11 @@ export default function Home() {
           />
         </Link>
 
-        <Arrow onClick={() => handleWordNavigation()} direction="right" />
+        <Button
+          style={{ transform: 'rotate(180deg)' }}
+          onClick={() => handleWordNavigation()}
+          icon={'./icons/arrow.png'}
+        />
       </div>
     </div>
   );

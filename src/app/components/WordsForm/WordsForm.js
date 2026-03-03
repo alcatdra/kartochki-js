@@ -1,6 +1,6 @@
 ﻿'use client';
 import React, { useState } from 'react';
-import styles from './Form.module.scss';
+import styles from './WordsForm.module.scss';
 
 export default function Form({ onAddItems }) {
   const [word, setWord] = useState('');

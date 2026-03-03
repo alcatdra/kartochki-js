@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from '../page.module.scss';
-import formStyles from '../components/Form/Form.module.scss';
+import formStyles from '../components/WordsForm/WordsForm.module.scss';
 import buttonStyles from '../components/Button/Button.module.scss';
 import Link from 'next/link';
 import Image from 'next/image';

@@ -17,3 +17,6 @@
     background-color: color.adjust(v.$color-button, $lightness: -10%);
   }
 }
+.right {
+  transform: rotate(180deg);
+}
