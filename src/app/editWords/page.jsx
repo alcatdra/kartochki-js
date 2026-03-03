@@ -1,4 +1,5 @@
 ﻿'use client';
+import { useEffect, useState } from 'react';
 import styles from '../page.module.scss';
 import Form from '../components/Form/Form';
 import ListItem from '../components/ListItem/ListItem';
@@ -9,17 +10,56 @@ import Link from 'next/link';
 import { useAppContext } from '../context/index';
 
 function editWords() {
-  const { words, setWords } = useAppContext();
+  const { stacks, setStacks, currentStackId, setCurrentStackId } =
+    useAppContext();
+  const [selectedStackId, setSelectedStackId] = useState(currentStackId);
+
+  useEffect(() => {
+    const hash = window.location.hash.replace('#', '');
+    if (!hash) return;
+
+    const exists = stacks.some((stack) => stack.id === hash);
+    if (exists) {
+      setSelectedStackId(hash);
+      setCurrentStackId(hash);
+    }
+  }, [stacks, setCurrentStackId]);
+
+  const selectedStack =
+    stacks.find((stack) => stack.id === selectedStackId) ?? stacks[0];
+  const words = selectedStack?.words ?? [];
+
+  function updateStackWords(stackId, updater) {
+    setStacks((prevStacks) =>
+      prevStacks.map((stack) =>
+        stack.id === stackId
+          ? {
+              ...stack,
+              words: updater(stack.words ?? []),
+            }
+          : stack
+      )
+    );
+  }
 
   function handleAddItems(word) {
-    setWords((words) => [...words, word]);
+    if (!selectedStack) return;
+    updateStackWords(selectedStack.id, (prevWords) => [...prevWords, word]);
   }
+
   function handleDeleteItems(id) {
-    setWords((words) => words.filter((word) => word.id != id));
+    if (!selectedStack) return;
+    updateStackWords(selectedStack.id, (prevWords) =>
+      prevWords.filter((word) => word.id != id)
+    );
   }
 
   return (
     <div className={styles.container}>
+      <h2>
+        Editing stack:{' '}
+        {selectedStack ? selectedStack.name : 'No stack selected'}
+      </h2>
       <Form onAddItems={handleAddItems} />
       <ul className={styles.list}>
         {words.length === 0 ? (
@@ -35,14 +75,11 @@ function editWords() {
         )}
       </ul>
 
-      <Link className={buttonStyles.button} href="/">
-        <Image
-          src="./icons/edit.png"
-          width={30}
-          height={30}
-          alt="image error"
-        />
-      </Link>
+      <div className={styles.navigation}>
+        <Link className={buttonStyles.button} href="/stacks">
+          <Image src="./icons/arrow.png" width={30} height={30} alt="back" />
+        </Link>
+      </div>
     </div>
   );
 }

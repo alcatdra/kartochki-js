@@ -9,29 +9,35 @@ import Link from 'next/link';
 import { useAppContext } from './context/index';
 
 export default function Home() {
-  const { words, setWords } = useAppContext();
+  const { stacks, currentStackId } = useAppContext();
   const [currentWord, setCurrentWord] = useState(0);
 
+  const currentStack =
+    stacks.find((stack) => stack.id === currentStackId) ?? stacks[0];
+  const words = currentStack?.words ?? [];
+
   function handleWordNavigation(increment = true) {
+    if (words.length === 0) return;
+
     if (increment) {
-      currentWord == words.length - 1
+      currentWord === words.length - 1
         ? {}
         : setCurrentWord(() => currentWord + 1);
     } else {
-      currentWord == 0 ? {} : setCurrentWord(() => currentWord - 1);
+      currentWord === 0 ? {} : setCurrentWord(() => currentWord - 1);
     }
   }
 
   return (
     <div className={styles.container}>
       <p>
-        {currentWord + 1}/{words.length}
+        {words.length === 0 ? 0 : currentWord + 1}/{words.length}
       </p>
       <Card word={words.length === 0 ? {} : words[currentWord]} />
       <div className={styles.navigation}>
         <Arrow onClick={() => handleWordNavigation(false)} direction="left" />
 
-        <Link className={buttonStyles.button} href="/editWords">
+        <Link className={buttonStyles.button} href="/stacks">
           <Image
             src="./icons/edit.png"
             width={30}
